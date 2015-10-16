@@ -43,22 +43,37 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery.js"></script>
+
 <script>
 
-    var myImage = document.getElementById("coffee_image");
-    var myRevenueMessage = document.getElementById("revenue");
+    //var myImage = document.getElementById("coffee_image");
+    //myImage.setAttribute('src', "static/coffee_beans.jpg");
+    
+    var myImage = $('#coffee_image');
+    myImage.attr('src', 'static/coffee_beans.jpg');
+    
+    //var myRevenueMessage = document.getElementById("revenue");
+    var myRevenueMessage = $('#revenue');
+    myRevenueMessage.append("Free Coffee!");
 
-    myImage.setAttribute('src', "static/coffee_beans.jpg");
-
-    myImage.addEventListener('click', function () {
-        return makeCoffee("brew");
-    });
-
-    function makeCoffee() {
-         myImage.src = "static/coffee_machine.jpg";
-         setTimeout(function() { myImage.setAttribute('src', "static/coffee_mug.jpg"); }, 500);
-         setTimeout(function() { myImage.setAttribute('src', "static/coffee_beans.jpg"); }, 1500);
+    // function makeCoffee() {
+    //      myImage.src = "static/coffee_machine.jpg";
+    //      setTimeout(function() { myImage.setAttribute('src', "static/coffee_mug.jpg"); }, 500);
+    //      setTimeout(function() { myImage.setAttribute('src', "static/coffee_beans.jpg"); }, 1500);
+    // }
+    function makeCoffee(evt) {
+        // This function will cycle through the three states of making coffee:  beans, machine, mug, repeat.
+        // All commands executed asynchronously, at once.
+        setTimeout(function() { myImage.attr('src', 'static/coffee_machine.jpg'); }, 500);
+        setTimeout(function() { myImage.attr('src', 'static/coffee_mug.jpg'); }, 1500);
+        setTimeout(function() { myImage.attr('src', 'static/coffee_beans.jpg'); }, 2500);
     }
+
+    // myImage.addEventListener('click', function () {
+    //     return makeCoffee("brew");
+    // });
+    myImage.on('click', makeCoffee);
 
 </script>
 
